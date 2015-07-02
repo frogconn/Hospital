@@ -46,6 +46,7 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnExportCSV = new System.Windows.Forms.Button();
+            this.btnViewReport = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvMain)).BeginInit();
             this.SuspendLayout();
@@ -189,11 +190,22 @@
             this.btnExportCSV.UseVisualStyleBackColor = true;
             this.btnExportCSV.Click += new System.EventHandler(this.btnExportCSV_Click);
             // 
+            // btnViewReport
+            // 
+            this.btnViewReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnViewReport.Location = new System.Drawing.Point(491, 376);
+            this.btnViewReport.Name = "btnViewReport";
+            this.btnViewReport.Size = new System.Drawing.Size(75, 23);
+            this.btnViewReport.TabIndex = 5;
+            this.btnViewReport.Text = "ออกรายงาน";
+            this.btnViewReport.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(718, 411);
+            this.Controls.Add(this.btnViewReport);
             this.Controls.Add(this.btnExportCSV);
             this.Controls.Add(this.btnAddNew);
             this.Controls.Add(this.gvMain);
@@ -230,5 +242,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.Button btnExportCSV;
+        private System.Windows.Forms.Button btnViewReport;
     }
 }
