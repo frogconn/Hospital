@@ -83,5 +83,12 @@ namespace Hospital
 
             
         }
+
+        private void btnViewReport_Click(object sender, EventArgs e)
+        {
+            var accessor = new PatientHistoryAccessor();
+            var data = accessor.FindAll();
+            new FormReport("Report1.rdlc", "DataSet1", data).ShowDialog();
+        }
     }
 }

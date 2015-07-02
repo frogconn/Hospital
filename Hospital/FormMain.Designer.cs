@@ -199,6 +199,7 @@
             this.btnViewReport.TabIndex = 5;
             this.btnViewReport.Text = "ออกรายงาน";
             this.btnViewReport.UseVisualStyleBackColor = true;
+            this.btnViewReport.Click += new System.EventHandler(this.btnViewReport_Click);
             // 
             // FormMain
             // 
