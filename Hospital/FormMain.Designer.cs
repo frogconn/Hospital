@@ -45,6 +45,7 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnExportCSV = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvMain)).BeginInit();
             this.SuspendLayout();
@@ -83,14 +84,14 @@
             // menuItemPatient
             // 
             this.menuItemPatient.Name = "menuItemPatient";
-            this.menuItemPatient.Size = new System.Drawing.Size(152, 22);
+            this.menuItemPatient.Size = new System.Drawing.Size(129, 22);
             this.menuItemPatient.Text = "ข้อมูลคนไข้";
             this.menuItemPatient.Click += new System.EventHandler(this.menuItemPatient_Click);
             // 
             // menuItemDoctor
             // 
             this.menuItemDoctor.Name = "menuItemDoctor";
-            this.menuItemDoctor.Size = new System.Drawing.Size(152, 22);
+            this.menuItemDoctor.Size = new System.Drawing.Size(129, 22);
             this.menuItemDoctor.Text = "ข้อมูลหมอ";
             this.menuItemDoctor.Click += new System.EventHandler(this.menuItemDoctor_Click);
             // 
@@ -177,17 +178,28 @@
             this.Column5.HeaderText = "วันนัดพบครั้งต่อไป";
             this.Column5.Name = "Column5";
             // 
-            // frmMain
+            // btnExportCSV
+            // 
+            this.btnExportCSV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExportCSV.Location = new System.Drawing.Point(572, 376);
+            this.btnExportCSV.Name = "btnExportCSV";
+            this.btnExportCSV.Size = new System.Drawing.Size(134, 23);
+            this.btnExportCSV.TabIndex = 4;
+            this.btnExportCSV.Text = "ส่งออกข้อมูล (CSV)";
+            this.btnExportCSV.UseVisualStyleBackColor = true;
+            // 
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(718, 411);
+            this.Controls.Add(this.btnExportCSV);
             this.Controls.Add(this.btnAddNew);
             this.Controls.Add(this.gvMain);
             this.Controls.Add(this.menuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
-            this.Name = "frmMain";
+            this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ประวัติคนไข้";
             this.Load += new System.EventHandler(this.frmMain_Load);
@@ -216,5 +228,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.Button btnExportCSV;
     }
 }
