@@ -187,6 +187,7 @@
             this.btnExportCSV.TabIndex = 4;
             this.btnExportCSV.Text = "ส่งออกข้อมูล (CSV)";
             this.btnExportCSV.UseVisualStyleBackColor = true;
+            this.btnExportCSV.Click += new System.EventHandler(this.btnExportCSV_Click);
             // 
             // FormMain
             // 

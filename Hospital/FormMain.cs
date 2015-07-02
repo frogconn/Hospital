@@ -1,9 +1,12 @@
-﻿using DataAccess;
+﻿using CsvHelper;
+using DataAccess;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -63,6 +66,22 @@ namespace Hospital
         {
             var accessor = new PatientHistoryAccessor();
             gvMain.DataSource = accessor.FindAll();
+        }
+
+        private void btnExportCSV_Click(object sender, EventArgs e)
+        {
+            var accessor = new PatientHistoryAccessor();
+
+            using (StreamWriter writer = new StreamWriter(@"PatientHistory.csv"))
+            using (CsvWriter csv = new CsvWriter(writer))
+            {
+                csv.Configuration.QuoteAllFields = true;
+                csv.Configuration.Encoding = Encoding.UTF8;
+                csv.WriteRecords(accessor.FindAll());
+              
+            }
+
+            
         }
     }
 }
