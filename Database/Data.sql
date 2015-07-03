@@ -1,0 +1,247 @@
+USE [master]
+GO
+
+/****** Object:  Database [HospitalDB]    Script Date: 07/03/2015 07:37:32 ******/
+CREATE DATABASE [HospitalDB] ON  PRIMARY 
+( NAME = N'HospitalDB', FILENAME = N'c:\Program Files\Microsoft SQL Server\MSSQL10_50.SQLEXPRESS\MSSQL\DATA\HospitalDB.mdf' , SIZE = 3072KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'HospitalDB_log', FILENAME = N'c:\Program Files\Microsoft SQL Server\MSSQL10_50.SQLEXPRESS\MSSQL\DATA\HospitalDB_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO
+
+ALTER DATABASE [HospitalDB] SET COMPATIBILITY_LEVEL = 100
+GO
+
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [HospitalDB].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+
+ALTER DATABASE [HospitalDB] SET ANSI_NULL_DEFAULT OFF 
+GO
+
+ALTER DATABASE [HospitalDB] SET ANSI_NULLS OFF 
+GO
+
+ALTER DATABASE [HospitalDB] SET ANSI_PADDING OFF 
+GO
+
+ALTER DATABASE [HospitalDB] SET ANSI_WARNINGS OFF 
+GO
+
+ALTER DATABASE [HospitalDB] SET ARITHABORT OFF 
+GO
+
+ALTER DATABASE [HospitalDB] SET AUTO_CLOSE OFF 
+GO
+
+ALTER DATABASE [HospitalDB] SET AUTO_CREATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [HospitalDB] SET AUTO_SHRINK OFF 
+GO
+
+ALTER DATABASE [HospitalDB] SET AUTO_UPDATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [HospitalDB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+
+ALTER DATABASE [HospitalDB] SET CURSOR_DEFAULT  GLOBAL 
+GO
+
+ALTER DATABASE [HospitalDB] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+
+ALTER DATABASE [HospitalDB] SET NUMERIC_ROUNDABORT OFF 
+GO
+
+ALTER DATABASE [HospitalDB] SET QUOTED_IDENTIFIER OFF 
+GO
+
+ALTER DATABASE [HospitalDB] SET RECURSIVE_TRIGGERS OFF 
+GO
+
+ALTER DATABASE [HospitalDB] SET  DISABLE_BROKER 
+GO
+
+ALTER DATABASE [HospitalDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+
+ALTER DATABASE [HospitalDB] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+
+ALTER DATABASE [HospitalDB] SET TRUSTWORTHY OFF 
+GO
+
+ALTER DATABASE [HospitalDB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+
+ALTER DATABASE [HospitalDB] SET PARAMETERIZATION SIMPLE 
+GO
+
+ALTER DATABASE [HospitalDB] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+
+ALTER DATABASE [HospitalDB] SET HONOR_BROKER_PRIORITY OFF 
+GO
+
+ALTER DATABASE [HospitalDB] SET  READ_WRITE 
+GO
+
+ALTER DATABASE [HospitalDB] SET RECOVERY SIMPLE 
+GO
+
+ALTER DATABASE [HospitalDB] SET  MULTI_USER 
+GO
+
+ALTER DATABASE [HospitalDB] SET PAGE_VERIFY CHECKSUM  
+GO
+
+ALTER DATABASE [HospitalDB] SET DB_CHAINING OFF 
+GO
+
+
+USE [HospitalDB]
+GO
+
+/****** Object:  Table [dbo].[Patient]    Script Date: 07/03/2015 07:37:55 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[Patient](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CitizenId] [varchar](13) NOT NULL,
+	[Name] [varchar](255) NOT NULL,
+	[Address] [varchar](500) NOT NULL,
+	[Telephone] [varchar](50) NULL,
+ CONSTRAINT [PK_Patient] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+
+
+
+USE [HospitalDB]
+GO
+
+/****** Object:  Table [dbo].[Doctor]    Script Date: 07/03/2015 07:38:15 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[Doctor](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](50) NULL,
+	[Description] [varchar](500) NULL,
+ CONSTRAINT [PK_Doctor] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+
+USE [HospitalDB]
+GO
+
+/****** Object:  Table [dbo].[PatientHistory]    Script Date: 07/03/2015 07:38:35 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[PatientHistory](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[PatientID] [int] NULL,
+	[DoctorID] [int] NULL,
+	[CheckDate] [datetime] NULL,
+	[Description] [varchar](500) NULL,
+	[Medicine] [varchar](255) NULL,
+	[AppointmentDate] [datetime] NULL,
+ CONSTRAINT [PK_PatientHistory] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+
+USE [HospitalDB];
+SET NOCOUNT ON;
+SET XACT_ABORT ON;
+GO
+
+SET IDENTITY_INSERT [dbo].[Doctor] ON;
+
+BEGIN TRANSACTION;
+INSERT INTO [dbo].[Doctor]([ID], [Name], [Description])
+SELECT 13, N'พนิดา ดุสิตานนท์', N'กุมารเวชศาสตร์' UNION ALL
+SELECT 14, N'พรชัย กิ่งวัฒนกุล', N'จักษุวิทยา' UNION ALL
+SELECT 15, N'พรพิมล เรียนถาวร', N'ทันตกรรมโรคเหงือก' UNION ALL
+SELECT 16, N'พรรุ้ง พฤทธิพงศ์สิทธิ์', N'ศัลยกรรมช่องปาก'
+COMMIT;
+RAISERROR (N'[dbo].[Doctor]: Insert Batch: 1.....Done!', 10, 1) WITH NOWAIT;
+GO
+
+SET IDENTITY_INSERT [dbo].[Doctor] OFF;
+
+SET IDENTITY_INSERT [dbo].[Patient] ON;
+
+BEGIN TRANSACTION;
+INSERT INTO [dbo].[Patient]([ID], [CitizenId], [Name], [Address], [Telephone])
+SELECT 9, N'158685523635', N'นิธิวัชร์ วัฒนวิจารณ์', N'ขอนแก่น', N'089-5639852' UNION ALL
+SELECT 10, N'963855652288', N'วิทยา เมฆานันท์', N'อุดรธานี', N'089-9638527' UNION ALL
+SELECT 13, N'8589696854125', N'สกานท์ เอี่ยมสอาด ', N'กรุงเทพมหานคร', N'' UNION ALL
+SELECT 14, N'8957415286996', N'สถาพร นาควิไลโรจน์', N'อยุธยา', N'081-9856324' UNION ALL
+SELECT 15, N'9638596274125', N'สบชัย ไกรยูรเสน', N'เชียงใหม่', N'091-8596327'
+COMMIT;
+RAISERROR (N'[dbo].[Patient]: Insert Batch: 1.....Done!', 10, 1) WITH NOWAIT;
+GO
+
+SET IDENTITY_INSERT [dbo].[Patient] OFF;
+
+SET IDENTITY_INSERT [dbo].[PatientHistory] ON;
+
+BEGIN TRANSACTION;
+INSERT INTO [dbo].[PatientHistory]([ID], [PatientID], [DoctorID], [CheckDate], [Description], [Medicine], [AppointmentDate])
+SELECT 1, 9, 13, '25580703 07:40:33.650', N'ไข้ขึ้นสูง ตัวร้อนจัด เสี่ยงไข้เลือดออก', N'พาราเซตามอล', '25580714 07:40:33.000' UNION ALL
+SELECT 2, 9, 13, '25580703 07:41:15.290', N'ปวดหัวอย่างรุนแรง', N'พาราเซตามอล', '25580711 07:41:15.000' UNION ALL
+SELECT 3, 9, 13, '25580703 07:47:07.263', N'ท้องร่วง', N'พาราเซตามอล', '25580716 07:47:07.000' UNION ALL
+SELECT 4, 14, 16, '25580703 07:47:26.647', N'ผ่าตัดฟันครุท', N'พาราเซตามอล', '25580717 07:47:26.000'
+COMMIT;
+RAISERROR (N'[dbo].[PatientHistory]: Insert Batch: 1.....Done!', 10, 1) WITH NOWAIT;
+GO
+
+SET IDENTITY_INSERT [dbo].[PatientHistory] OFF;
+
