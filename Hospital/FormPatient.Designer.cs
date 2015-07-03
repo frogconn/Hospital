@@ -72,6 +72,7 @@
             // txtCitizenId
             // 
             this.txtCitizenId.Location = new System.Drawing.Point(133, 47);
+            this.txtCitizenId.MaxLength = 13;
             this.txtCitizenId.Name = "txtCitizenId";
             this.txtCitizenId.Size = new System.Drawing.Size(419, 20);
             this.txtCitizenId.TabIndex = 0;
